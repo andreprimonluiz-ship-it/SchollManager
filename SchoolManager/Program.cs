@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("SchoolManagerContext") ?? throw new InvalidOperationException("Connection string 'SchoolManagerContext' not found.");
+var connectionString = builder.Configuration.GetConnectionString("SchoolManagerContext");
 
-builder.Services.AddDbContext<SchoolManagerContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<SchoolManagerContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
+);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

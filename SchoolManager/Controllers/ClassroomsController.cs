@@ -15,7 +15,7 @@ public class ClassroomsController : Controller
     // GET: CLASSROOMS
     public async Task<IActionResult> Index()    
     {
-        return View(await _context.Classroom.ToListAsync());
+        return View(await _context.Classrooms.ToListAsync());
     }
 
     // GET: CLASSROOMS/Details/5
@@ -26,7 +26,7 @@ public class ClassroomsController : Controller
             return NotFound();
         }
 
-        var classroom = await _context.Classroom
+        var classroom = await _context.Classrooms
             .FirstOrDefaultAsync(m => m.Id == id);
         if (classroom == null)
         {
@@ -66,7 +66,7 @@ public class ClassroomsController : Controller
             return NotFound();
         }
 
-        var classroom = await _context.Classroom.FindAsync(id);
+        var classroom = await _context.Classrooms.FindAsync(id);
         if (classroom == null)
         {
             return NotFound();
@@ -117,7 +117,7 @@ public class ClassroomsController : Controller
             return NotFound();
         }
 
-        var classroom = await _context.Classroom
+        var classroom = await _context.Classrooms
             .FirstOrDefaultAsync(m => m.Id == id);
         if (classroom == null)
         {
@@ -132,10 +132,10 @@ public class ClassroomsController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int? id)
     {
-        var classroom = await _context.Classroom.FindAsync(id);
+        var classroom = await _context.Classrooms.FindAsync(id);
         if (classroom != null)
         {
-            _context.Classroom.Remove(classroom);
+            _context.Classrooms.Remove(classroom);
         }
 
         await _context.SaveChangesAsync();
@@ -144,6 +144,6 @@ public class ClassroomsController : Controller
 
     private bool ClassroomExists(int? id)
     {
-        return _context.Classroom.Any(e => e.Id == id);
+        return _context.Classrooms.Any(e => e.Id == id);
     }
 }
