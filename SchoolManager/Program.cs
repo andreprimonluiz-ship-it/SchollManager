@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SchoolManager.Data;
+using SchoolManager.Services;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("SchoolManagerContext");
 
@@ -9,6 +10,7 @@ builder.Services.AddDbContext<SchoolManagerContext>(options => options.UseMySql(
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<SeedingService>();
+builder.Services.AddScoped<StudentsService>();
 
 var app = builder.Build();
 
