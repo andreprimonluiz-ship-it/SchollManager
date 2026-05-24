@@ -1,4 +1,5 @@
-﻿using SchoolManager.Models.Enums;
+﻿using SchoolManager.Controllers;
+using SchoolManager.Models.Enums;
 namespace SchoolManager.Models
 {
     public class Classroom
@@ -39,6 +40,8 @@ namespace SchoolManager.Models
         {
             return Students.Where(p => p.Name == nome).Select(p => p.Name).FirstOrDefault();
         }
+        
+        
         
 
 

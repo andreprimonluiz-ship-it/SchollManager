@@ -16,6 +16,11 @@ namespace SchoolManager.Services
         {
             return _context.Students.Include(p => p.Classroom).ToList();
         }
+        public void Insert(Student obj)
+        {
+            _context.Add(obj);
+            _context.SaveChanges();
+        }
 
     }
 }

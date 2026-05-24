@@ -1,20 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SchoolManager.Services;
+using SchoolManager.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using SchoolManager.Models.ViewModel;
 
 namespace SchoolManager.Controllers
 {
     public class StudentsController : Controller
     {
         private readonly StudentsService _studentsService;
-        public StudentsController (StudentsService studentsService)
+        private readonly ClassroomService _classroomService;
+        public StudentsController (StudentsService studentsService, ClassroomService classroomService)
         {
             _studentsService = studentsService;
+            _classroomService = classroomService;
         }
 
         public IActionResult Index()
         {
             var list = _studentsService.FindAll();
             return View(list);
+        }
+
+        public IActionResult Create()
+        {
+            var classrooms = _classroomService.FindAll();
+            var viewModel = new StudentFormViewModel { Classrooms = classrooms };
+            return View(viewModel);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Student student)
+        {
+            _studentsService.Insert(student);
+            return RedirectToAction(nameof(Index));
         }
 
     }

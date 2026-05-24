@@ -11,6 +11,7 @@ builder.Services.AddDbContext<SchoolManagerContext>(options => options.UseMySql(
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<SeedingService>();
 builder.Services.AddScoped<StudentsService>();
+builder.Services.AddScoped<ClassroomService>();
 
 var app = builder.Build();
 
